@@ -67,5 +67,3 @@ source install/setup.bash
 - Python 3
 
 ## Hardware Setup
-
-Ver [hardware-setup.md](../docs/getting-started/hardware-setup.md) para conexiones.
