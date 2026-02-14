@@ -1,0 +1,71 @@
+name: ROS2 CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup ROS2 Humble
+      uses: ros-tooling/setup-ros@v0.6
+      with:
+        required-ros-distributions: humble
+        
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          python3-colcon-common-extensions \
+          python3-rosdep \
+          python3-pip \
+          python3-serial
+        sudo rosdep init || true
+        rosdep update
+        
+    - name: Install ROS2 dependencies
+      run: |
+        rosdep install --from-paths . --ignore-src -r -y || true
+        
+    - name: Build rover_core
+      run: |
+        cd rover_core
+        colcon build --symlink-install
+        
+    - name: Build rover_drivers
+      run: |
+        cd rover_drivers
+        source ../rover_core/install/setup.bash
+        colcon build --symlink-install
+        
+    - name: Build rover_control
+      run: |
+        cd rover_control
+        source ../rover_core/install/setup.bash
+        source ../rover_drivers/install/setup.bash
+        colcon build --symlink-install
+        
+    - name: Build rover_simulation
+      run: |
+        cd rover_simulation
+        source ../rover_core/install/setup.bash
+        colcon build --symlink-install
+        
+    - name: Run tests
+      run: |
+        cd rover_core
+        colcon test || true
+        cd ../rover_drivers
+        colcon test || true
+        
+    - name: Verify build
+      run: |
+        source rover_core/install/setup.bash
+        ros2 pkg list | grep rover

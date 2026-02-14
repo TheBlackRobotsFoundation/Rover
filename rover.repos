@@ -1,0 +1,21 @@
+# rover.repos
+# Archivo para vcstool - permite clonar dependencias externas
+# Uso: vcs import < rover.repos
+
+repositories:
+  # Si en el futuro se separan workspaces en repos independientes
+  # se pueden agregar aquí
+  
+  # Ejemplo:
+  # rover_core:
+  #   type: git
+  #   url: https://github.com/TheBlackRobotsFoundation/rover_core.git
+  #   version: main
+  
+  # rover_drivers:
+  #   type: git
+  #   url: https://github.com/TheBlackRobotsFoundation/rover_drivers.git
+  #   version: main
+
+  # Por ahora, todo está en el monorepo
+  # Este archivo está listo para cuando se decida hacer multi-repo

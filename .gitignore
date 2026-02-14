@@ -1,0 +1,53 @@
+# ROS2
+install/
+build/
+log/
+*.bag
+*.db3
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Documentation build
+docs/_build/
+docs/.doctrees/
+
+# Maps
+*.pgm
+*.yaml
+maps/
+
+# Rosbags
+*.bag
+rosbags/
+
+# Gazebo
+.gazebo/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
