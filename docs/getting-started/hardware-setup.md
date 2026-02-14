@@ -260,4 +260,3 @@ sudo usermod -a -G dialout $USER
 ## Próximos Pasos
 
 - [Quick Start](quickstart.md): Primer arranque del rover
-- [Calibración](../guides/calibration.md): Calibrar sensores
